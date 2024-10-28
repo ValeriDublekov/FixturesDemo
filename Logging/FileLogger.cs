@@ -2,7 +2,7 @@
 
 public static class FileLogger
 {
-    private const string FilePath = @"C:\Users\dublekov\Desktop\1.txt";
+    private const string FilePath = @"output.log";
     private static readonly object LockObject = new object();
 
     static FileLogger()
