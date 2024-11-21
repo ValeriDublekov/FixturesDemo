@@ -8,7 +8,14 @@ public abstract class AutoRegisteringFixture : IAsyncLifetime
 
     public async Task InitializeAsync()
     {
-        await InitializeFixtureAsync();
+        try
+        {
+            await InitializeFixtureAsync();
+        }
+        catch (Exception e)
+        {
+            GlobalFixtureRegistry.SetFailure(this, e);
+        }
 
         GlobalFixtureRegistry.RegisterFixture(this);
     }

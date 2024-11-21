@@ -26,4 +26,11 @@ public class GlobalFixtureRegistry
     {
         return Fixtures.GetOrAdd(fixtureType, new TaskCompletionSource<AutoRegisteringFixture>());
     }
+
+    public static void SetFailure<T>(T instance, Exception exception)
+        where T : AutoRegisteringFixture
+    {
+        var taskCompletionSource = GetTaskCompletionSource(instance.GetType());
+        taskCompletionSource.SetException(exception);
+    }
 }
